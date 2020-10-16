@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+export EDITOR=nano # For actually getting things done instead of launcing an operating system you can't quit on top of your exisiting one.
+export LANG="en_CA.UTF-8" # Not a burgerfucker
+export LC_ALL="en_CA.UTF-8" # ^
+
+#Path Exports
+export GO_PATH="/usr/local/go/bin" #Fuck Go
+export CARGO_PATH="$HOME/.cargo/bin" #Fuck Rust
+                                     #But most importantly, Fuck You. With a Rusty nail.
+
+export PATH="$PATH:$GO_PATH:$CARGO_PATH"
+#RUBY_PATH=$HOME/.gem/ruby/2.5.0/bin #?
+#export GTK_USE_PORTAL=1 #Not needed anymore? I get QT File pickers just fine on Firefox
+
+export TODO_FILE=~/.todo/list.txt # https://blog.nekohime.net/simple-todo-list-manager.html
+
+export LESS_TERMCAP_mb="$(printf '\e[1;31m')"
+export LESS_TERMCAP_md="$(printf '\e[1;31m')"
+export LESS_TERMCAP_me="$(printf '\e[0m')"
+export LESS_TERMCAP_se="$(printf '\e[0m')"
+export LESS_TERMCAP_so="$(printf '\e[1;44;33m')"
+export LESS_TERMCAP_ue="$(printf '\e[0m')"
+export LESS_TERMCAP_us="$(printf '\e[1;32m')"
+

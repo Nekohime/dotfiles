@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#alias python=python3 #update-alternatives better, plus this failed to work anyway. /shrug
+
+alias sl='ls' # Choochoo!
+alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
+alias dusort="du -sh $1* | sort -h"
+
+#alias disas="objdump -drwCS -Mintel"
+#alias disas2="objdump -drwCS -Matt"
+alias todo='bash ~/Documents/git/BashScripts/utils/todo.sh' # "You put git repositories in Documents?!"
+

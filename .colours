@@ -1,0 +1,16 @@
+#-----------------------------------------------------------------------#
+#                           	Colors 		                            #
+#-----------------------------------------------------------------------#
+
+export Black="$(tput setaf 0)"								# Black
+export Red="$(tput setaf 1)"								# Red
+export Green="$(tput setaf 2)"								# Green
+export Yellow="$(tput setaf 3)"								# Yellow
+export Blue="$(tput setaf 4)"								# Blue
+export Purple="$(tput setaf 5)"								# Purple
+export Cyan="$(tput setaf 6)"								# Cyan
+export White="$(tput setaf 7)"								# White
+
+export NC="$(tput sgr0)"	  								# No colors
+export UNDER="$(tput smul)"									# Underline
+export BOLD="$(tput bold)"									# Bold
