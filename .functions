@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Archives & Compression
 function x {
   if [ -z "$1" ]; then
     echo "Usage: x <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -29,7 +30,66 @@ function x {
   fi
 }
 
+function zip_all_individually {
+if [ -z "$1" ];
+then
+	for i in *.rwx; do zip `basename $i .rwx`.zip $i; done
+else
+	for i in *.$1; do zip `basename $i .$1`.zip $i; done
+fi
+}
+
+# Image Manipulation
+
+function bmp_to_png {
+	for img in *.bmp; do
+		filename=${img%.*}
+		convert "$filename.bmp" "$filename.png"
+	done
+}
+
+# Everyday utils
+
+function clif {
+	find . -name '*.'"$1" | xargs wc -l
+}
+
+function wdmesg {
+	tail_lines="$1"
+	if [ -z "$tail_lines" ]
+	then
+		tail_lines=20
+	fi
+	watch -n 0.1 "sudo dmesg | tail -$tail_lines"
+}
+
+# Diagnostic/Troubleshooting/Show off
+
+function dump_specs {
+	rm specs.tar.gz
+
+	lspci > lspci.log
+	lsusb > lsusb.log
+
+	sudo inxi -FmB -v 7 > inxi.log
+	sudo chown $USER:$USER inxi.log
+
+	tar -cvf specs.tar.gz *.log
+
+	rm lspci.log
+	rm lsusb.log
+	rm inxi.log
+}
+
+#Media Stuff
+#function ytdl_ogg {
+	#youtube-dl -x --audio-format vorbis "$1"
+#}
+
+function cutsong {
+	ffmpeg -i "$1" -ss "$2" -to "$3" -c copy ass.ogg
+	mv ass.ogg "$1"
+}
+
 
 #underline () { t="$1"; c=${2:-=}; echo "$1"; echo "${t//?/$c}"; } #Meh
-
-

@@ -5,13 +5,17 @@ export LANG="en_CA.UTF-8" # Not a burgerfucker
 export LC_ALL="en_CA.UTF-8" # ^
 
 #Path Exports
-export GO_PATH="/usr/local/go/bin" #Fuck Go
-export CARGO_PATH="$HOME/.cargo/bin" #Fuck Rust
+#export GO_PATH="/usr/local/go/bin" #Fuck Go
+#export CARGO_PATH="$HOME/.cargo/bin" #Fuck Rust
                                      #But most importantly, Fuck You. With a Rusty nail.
-
-export PATH="$PATH:$GO_PATH:$CARGO_PATH"
+export PATH="$PATH"#:$GO_PATH"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/nekohime/.local/share/flatpak/exports/share"
+#:$CARGO_PATH"
 #RUBY_PATH=$HOME/.gem/ruby/2.5.0/bin #?
-#export GTK_USE_PORTAL=1 #Not needed anymore? I get QT File pickers just fine on Firefox
+
+#The following line should be put in /etc/profile
+#export GTK_USE_PORTAL=1
+
 
 export TODO_FILE=~/.todo/list.txt # https://blog.nekohime.net/simple-todo-list-manager.html
 
@@ -23,3 +27,12 @@ export LESS_TERMCAP_so="$(printf '\e[1;44;33m')"
 export LESS_TERMCAP_ue="$(printf '\e[0m')"
 export LESS_TERMCAP_us="$(printf '\e[1;32m')"
 
+#So this on its own doesn't fix what it was put here to fix
+#pinentry-program /usr/bin/pinentry-curses needs to be set in gpg-agent.conf
+#Once that's done, simply reloadagent (Or restart) and it should work as expected
+# The following export will make it terminal only but will not use the curses interface - it will output the password as you type it
+# This will be removed in the future
+# Arch BTW
+#export GPG_TTY=$(tty)
+
+export NCURSES_NO_UTF8_ACS=1

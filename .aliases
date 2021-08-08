@@ -2,11 +2,39 @@
 
 #alias python=python3 #update-alternatives better, plus this failed to work anyway. /shrug
 
+# Everyday utils
 alias sl='ls' # Choochoo!
-alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
+alias lsdot='ls -ld .?* --color=always'
+alias fd='fdfind'
 alias dusort="du -sh $1* | sort -h"
 
+# File I/O
+alias pjson='jq . "$1"'
+alias norg="gron --ungron"
+alias ungron="gron --ungron"
+alias todo='bash ~/git/BashScripts/utils/todo.sh' # "You put git repositories in Documents?!"
+
+
+# Dev
+alias make13='make -j13'
+alias gitlog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+#alias luarocks="luarocks --lua-version 5.1" #doesn't work when in here?
 #alias disas="objdump -drwCS -Mintel"
 #alias disas2="objdump -drwCS -Matt"
-alias todo='bash ~/Documents/git/BashScripts/utils/todo.sh' # "You put git repositories in Documents?!"
 
+# Network Stuff
+alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
+
+# Terminal Browsing
+alias set_w3m='export BROWSER=w3m'
+alias ddg='BROWSER=w3m ddgr'
+alias read_w3m='readable "$1" | w3m -T text/html'
+
+
+#alias df="df -x'squashfs'"
+
+#Media Stuff
+alias ytdl_ogg='youtube-dl -x --audio-format vorbis "$1"'
+alias vlc="smplayer"
+
+# Misc
