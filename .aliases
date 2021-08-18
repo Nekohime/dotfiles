@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-#alias python=python3 #update-alternatives better, plus this failed to work anyway. /shrug
+alias py="python"
 
 # Everyday utils
 alias sl='ls' # Choochoo!
-alias lsdot='ls -ld .?* --color=always'
+alias lsdot='ls -ad .?* --color=always'
 alias fd='fdfind'
 alias dusort="du -sh $1* | sort -h"
+#alias nicepath='echo "$1" | tr \: \\n' #Moved to function
+alias locate="plocate -i"
 
 # File I/O
 alias pjson='jq . "$1"'
@@ -24,6 +26,7 @@ alias gitlog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Cres
 
 # Network Stuff
 alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
+alias wget='wget --hsts-file ~/.local/share/wget-hsts' # Don't fucking pollute my $HOME!
 
 # Terminal Browsing
 alias set_w3m='export BROWSER=w3m'
@@ -34,7 +37,7 @@ alias read_w3m='readable "$1" | w3m -T text/html'
 #alias df="df -x'squashfs'"
 
 #Media Stuff
-alias ytdl_ogg='youtube-dl -x --audio-format vorbis "$1"'
+alias ytdl_ogg="youtube-dl -x --audio-format vorbis "$1""
 alias vlc="smplayer"
 
 # Misc

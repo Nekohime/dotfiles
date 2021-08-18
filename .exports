@@ -7,12 +7,16 @@ export LC_ALL="en_CA.UTF-8" # ^
 #Path Exports
 #export GO_PATH="/usr/local/go/bin" #Fuck Go
 #export CARGO_PATH="$HOME/.cargo/bin" #Fuck Rust
+export PYTHON_BIN="$HOME/.local/bin"
+export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin" #Fuck Ruby
                                      #But most importantly, Fuck You. With a Rusty nail.
-export PATH="$PATH"#:$GO_PATH"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/nekohime/.local/share/flatpak/exports/share"
-#:$CARGO_PATH"
-#RUBY_PATH=$HOME/.gem/ruby/2.5.0/bin #?
 
+export PATH="$RUBY_BIN:$PYTHON_BIN:$PATH" #$PATH Always at the end
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/nekohime/.local/share/flatpak/exports/share"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+#:$CARGO_PATH"
 #The following line should be put in /etc/profile
 #export GTK_USE_PORTAL=1
 
@@ -36,3 +40,5 @@ export LESS_TERMCAP_us="$(printf '\e[1;32m')"
 #export GPG_TTY=$(tty)
 
 export NCURSES_NO_UTF8_ACS=1
+export LESSHISTFILE=/dev/null #Stop polluting! #?
+

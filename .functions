@@ -82,14 +82,40 @@ function dump_specs {
 }
 
 #Media Stuff
-#function ytdl_ogg {
-	#youtube-dl -x --audio-format vorbis "$1"
-#}
+
+#ytdl_ogg $1
 
 function cutsong {
 	ffmpeg -i "$1" -ss "$2" -to "$3" -c copy ass.ogg
 	mv ass.ogg "$1"
 }
 
+function update-cnf {
+	sudo pkgfile -u
+}
+
+function update-grub {
+	sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+function dmesg-fix {
+	#Permanent fix - put in /etc/sysctl.d/51-dmesg-restrict.conf
+	sudo sysctl kernel.dmesg_restrict=0
+}
+
+function ram_random_disable {
+  sudo sysctl -w kernel.randomize_va_space=0
+}
+
+function ram_random_enable {
+  sudo sysctl -w kernel.randomize_va_space=2
+}
+
+function nicepath {
+	echo "$1" | tr \: \\n
+}
+function lwh {
+	ls -la $(which "$1")
+}
 
 #underline () { t="$1"; c=${2:-=}; echo "$1"; echo "${t//?/$c}"; } #Meh

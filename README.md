@@ -1,6 +1,6 @@
-# Dotfiles & Dotfolders
+# Dotfiles
 
-My dotfiles/dotfolders. Public Domain.
+My dotfiles. Public Domain.
 
 In ~/.bashrc:
 ```
