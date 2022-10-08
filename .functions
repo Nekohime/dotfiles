@@ -2,6 +2,7 @@
 
 # Archives & Compression
 function x {
+#TODO: Make use of atool.
   if [ -z "$1" ]; then
     echo "Usage: x <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else
@@ -63,6 +64,16 @@ function wdmesg {
 	watch -n 0.1 "sudo dmesg | tail -$tail_lines"
 }
 
+function mkscript {
+	if [ -z "$1" ]; then
+		echo "Usage: mkscript <filename>"
+	else
+		echo '#!/usr/bin/env bash' > "$1"
+		chmod +x "$1"
+		$EDITOR "$1"
+	fi
+}
+
 # Diagnostic/Troubleshooting/Show off
 
 function dump_specs {
@@ -119,3 +130,11 @@ function lwh {
 }
 
 #underline () { t="$1"; c=${2:-=}; echo "$1"; echo "${t//?/$c}"; } #Meh
+
+c() { printf "%s\n" "$@" | bc -l; }
+
+function lowercase_all_files {
+	for f in `find`; do mv -v "$f" "`echo $f | tr '[A-Z]' '[a-z]'`"; done
+}
+
+#ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done 

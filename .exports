@@ -6,12 +6,17 @@ export LC_ALL="en_CA.UTF-8" # ^
 
 #Path Exports
 #export GO_PATH="/usr/local/go/bin" #Fuck Go
-#export CARGO_PATH="$HOME/.cargo/bin" #Fuck Rust
-export PYTHON_BIN="$HOME/.local/bin"
+export CARGO_PATH="$HOME/.cargo/bin"
+#export PYTHON_BIN="$HOME/.local/bin" #Fuck Python
 export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin" #Fuck Ruby
                                      #But most importantly, Fuck You. With a Rusty nail.
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="$RUBY_BIN:$PYTHON_BIN:$PATH" #$PATH Always at the end
+
+#export PATH="$RUBY_BIN:$PYTHON_BIN:$PATH" #$PATH Always at the end
+export PATH="$CARGO_PATH:$PATH"
 export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/nekohime/.local/share/flatpak/exports/share"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -37,7 +42,7 @@ export LESS_TERMCAP_us="$(printf '\e[1;32m')"
 # The following export will make it terminal only but will not use the curses interface - it will output the password as you type it
 # This will be removed in the future
 # Arch BTW
-#export GPG_TTY=$(tty)
+export GPG_TTY=$(tty)
 
 export NCURSES_NO_UTF8_ACS=1
 export LESSHISTFILE=/dev/null #Stop polluting! #?

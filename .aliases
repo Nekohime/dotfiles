@@ -5,17 +5,19 @@ alias py="python"
 # Everyday utils
 alias sl='ls' # Choochoo!
 alias lsdot='ls -ad .?* --color=always'
-alias fd='fdfind'
+#alias fd='fdfind'
 alias dusort="du -sh $1* | sort -h"
 #alias nicepath='echo "$1" | tr \: \\n' #Moved to function
 alias locate="plocate -i"
+alias tmp="cd $(mktemp -d)"
+alias atom="flatpak run io.atom.Atom"
 
 # File I/O
 alias pjson='jq . "$1"'
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
 alias todo='bash ~/git/BashScripts/utils/todo.sh' # "You put git repositories in Documents?!"
-
+alias tar64='tar cjf - "$1" | base64 | tr -d "\n"'
 
 # Dev
 alias make13='make -j13'
