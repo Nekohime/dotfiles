@@ -6,18 +6,16 @@ alias py="python"
 alias sl='ls' # Choochoo!
 alias lsdot='ls -ad .?* --color=always'
 #alias fd='fdfind'
-alias dusort="du -sh $1* | sort -h"
-#alias nicepath='echo "$1" | tr \: \\n' #Moved to function
+#alias df="df -x'squashfs'"
 alias locate="plocate -i"
-alias tmp="cd $(mktemp -d)"
+alias tmp='cd "$(mktemp -d)"'
 alias atom="flatpak run io.atom.Atom"
+alias steam-flatpak="flatpak run com.valvesoftware.Steam"
 
 # File I/O
-alias pjson='jq . "$1"'
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
 alias todo='bash ~/git/BashScripts/utils/todo.sh' # "You put git repositories in Documents?!"
-alias tar64='tar cjf - "$1" | base64 | tr -d "\n"'
 
 # Dev
 alias make13='make -j13'
@@ -33,13 +31,9 @@ alias wget='wget --hsts-file ~/.local/share/wget-hsts' # Don't fucking pollute m
 # Terminal Browsing
 alias set_w3m='export BROWSER=w3m'
 alias ddg='BROWSER=w3m ddgr'
-alias read_w3m='readable "$1" | w3m -T text/html'
-
-
-#alias df="df -x'squashfs'"
 
 #Media Stuff
-alias ytdl_ogg="youtube-dl -x --audio-format vorbis "$1""
+
 alias vlc="smplayer"
 
 # Misc

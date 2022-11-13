@@ -6,23 +6,23 @@ function x {
   if [ -z "$1" ]; then
     echo "Usage: x <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else
-    if [ -f $1 ]; then
-      case $1 in
-        *.tar.bz2)   tar xvjf $1    ;;
-        *.tar.gz)    tar xvzf $1    ;;
-        *.tar.xz)    tar xvJf $1    ;;
-        *.lzma)      unlzma $1      ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar x -ad $1 ;;
-        *.gz)        gunzip $1      ;;
-        *.tar)       tar xvf $1     ;;
-        *.tbz2)      tar xvjf $1    ;;
-        *.tgz)       tar xvzf $1    ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
-        *.xz)        unxz $1        ;;
-        *.exe)       cabextract $1  ;;
+    if [ -f "$1" ]; then
+      case "$1" in
+        *.tar.bz2)   tar xvjf "$1"    ;;
+        *.tar.gz)    tar xvzf "$1"    ;;
+        *.tar.xz)    tar xvJf "$1"    ;;
+        *.lzma)      unlzma "$1"      ;;
+        *.bz2)       bunzip2 "$1"     ;;
+        *.rar)       unrar x -ad "$1" ;;
+        *.gz)        gunzip "$1"      ;;
+        *.tar)       tar xvf "$1"     ;;
+        *.tbz2)      tar xvjf "$1"    ;;
+        *.tgz)       tar xvzf "$1"    ;;
+        *.zip)       unzip "$1"       ;;
+        *.Z)         uncompress "$1"  ;;
+        *.7z)        7z x "$1"        ;;
+        *.xz)        unxz "$1"        ;;
+        *.exe)       cabextract "$1"  ;;
         *)           echo "extract: '$1' - unknown archive method" ;;
       esac
     else
@@ -34,9 +34,10 @@ function x {
 function zip_all_individually {
 if [ -z "$1" ];
 then
-	for i in *.rwx; do zip `basename $i .rwx`.zip $i; done
+  for i in *.rwx; do zip "$(basename "$i" .rwx).zip" "$i"; done
 else
-	for i in *.$1; do zip `basename $i .$1`.zip $i; done
+	#for i in *.$1; do zip `basename $i .$1`.zip $i; done
+  for i in *."$1"; do zip "$(basename "$i" ."$1").zip" "$i"; done
 fi
 }
 
@@ -51,8 +52,14 @@ function bmp_to_png {
 
 # Everyday utils
 
+function dusort {
+  du -sh "$1*" | sort -h
+}
+
 function clif {
-	find . -name '*.'"$1" | xargs wc -l
+  #total lines of code in all files of extension <$1>
+  # shellcheck disable=SC2038
+	find . -name '*.'"$1" | xargs wc -l #SC2038 (warning): Use -print0/-0 or -exec + to allow for non-alphanumeric filenames.
 }
 
 function wdmesg {
@@ -74,6 +81,21 @@ function mkscript {
 	fi
 }
 
+# File I/O
+
+function pjson {
+  jq . "$1"
+}
+
+function tar64 {
+  tar cjf - "$1" | base64 | tr -d "\n"
+}
+
+# Terminal Browsing
+
+function read_w3m {
+  readable "$1" | w3m -T text/html
+}
 # Diagnostic/Troubleshooting/Show off
 
 function dump_specs {
@@ -82,10 +104,11 @@ function dump_specs {
 	lspci > lspci.log
 	lsusb > lsusb.log
 
+  # shellcheck disable=SC2024
 	sudo inxi -FmB -v 7 > inxi.log
-	sudo chown $USER:$USER inxi.log
+	sudo chown "$USER:$USER" inxi.log
 
-	tar -cvf specs.tar.gz *.log
+	tar -cvf specs.tar.gz "*.log"
 
 	rm lspci.log
 	rm lsusb.log
@@ -93,9 +116,11 @@ function dump_specs {
 }
 
 #Media Stuff
-
-#ytdl_ogg $1
-
+function ytdl_ogg {
+  youtube-dl -x --audio-format vorbis "$1"
+  #youtube-dl -x --audio-format opus "$1"
+  #youtube-dl -x -f "bestaudio/best" "$1"
+}
 function cutsong {
 	ffmpeg -i "$1" -ss "$2" -to "$3" -c copy ass.ogg
 	mv ass.ogg "$1"
@@ -122,19 +147,12 @@ function ram_random_enable {
   sudo sysctl -w kernel.randomize_va_space=2
 }
 
-function nicepath {
-	echo "$1" | tr \: \\n
-}
 function lwh {
-	ls -la $(which "$1")
+	ls -la "$(which "$1")"
 }
 
 #underline () { t="$1"; c=${2:-=}; echo "$1"; echo "${t//?/$c}"; } #Meh
 
 c() { printf "%s\n" "$@" | bc -l; }
 
-function lowercase_all_files {
-	for f in `find`; do mv -v "$f" "`echo $f | tr '[A-Z]' '[a-z]'`"; done
-}
-
-#ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done 
+#ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done
