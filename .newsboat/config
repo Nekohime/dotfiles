@@ -1,0 +1,3 @@
+browser "./newsboat_choice"
+download-full-page yes
+
