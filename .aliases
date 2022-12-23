@@ -9,7 +9,7 @@ alias lsdot='ls -ad .?* --color=always'
 #alias df="df -x'squashfs'"
 alias locate="plocate -i"
 alias tmp='cd "$(mktemp -d)"'
-alias atom="flatpak run io.atom.Atom"
+alias atom="pulsar"
 alias steam-flatpak="flatpak run com.valvesoftware.Steam"
 
 # File I/O

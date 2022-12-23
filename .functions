@@ -117,7 +117,7 @@ function dump_specs {
 
 #Media Stuff
 function ytdl_ogg {
-  youtube-dl -x --audio-format vorbis "$1"
+  yt-dlp -x --audio-format vorbis "$1"
   #youtube-dl -x --audio-format opus "$1"
   #youtube-dl -x -f "bestaudio/best" "$1"
 }
@@ -153,6 +153,8 @@ function lwh {
 
 #underline () { t="$1"; c=${2:-=}; echo "$1"; echo "${t//?/$c}"; } #Meh
 
-c() { printf "%s\n" "$@" | bc -l; }
+c() { printf "%s\n" "$@" | bc -l; } # c 13+17
 
-#ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done
+#ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done #?
+
+mping(){ ping $1|awk -F[=\ ] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -V0 -q -n synth 1 pl " f " vol 1 reverb -w ";print $0;system(c)}';}
