@@ -15,7 +15,7 @@ alias steam-flatpak="flatpak run com.valvesoftware.Steam"
 # File I/O
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
-alias todo='bash ~/git/BashScripts/utils/todo.sh' # "You put git repositories in Documents?!"
+alias todo='bash ~/git/scripts/utils/todo.sh'
 
 # Dev
 alias make13='make -j13'
