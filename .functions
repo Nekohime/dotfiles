@@ -32,13 +32,12 @@ function x {
 }
 
 function zip_all_individually {
-if [ -z "$1" ];
-then
-  for i in *.rwx; do zip "$(basename "$i" .rwx).zip" "$i"; done
-else
-	#for i in *.$1; do zip `basename $i .$1`.zip $i; done
-  for i in *."$1"; do zip "$(basename "$i" ."$1").zip" "$i"; done
-fi
+  if [ -z "$1" ];
+  then
+    for i in *.rwx; do zip "$(basename "$i" .rwx).zip" "$i"; done
+  else
+    for i in *."$1"; do zip "$(basename "$i" ."$1").zip" "$i"; done
+  fi
 }
 
 # Image Manipulation
@@ -49,6 +48,15 @@ function bmp_to_png {
 		convert "$filename.bmp" "$filename.png"
 	done
 }
+
+function png_to_jpg {
+	for img in *.png; do
+		filename=${img%.*}
+		convert "$filename.png" "$filename.jpg"
+	done
+  echo 'Done converting. Loss of quality may be noticed.'
+}
+
 
 # Everyday utils
 
@@ -81,6 +89,18 @@ function mkscript {
 	fi
 }
 
+# Use 'farore' to set a temporary 'warp point', and use again to 'warp back'
+
+function farore {
+
+	if [ ! -e "$location" ]; then
+		location="$(pwd)"
+	else
+		cd "$location"
+		unset location
+	fi
+}
+
 # File I/O
 
 function pjson {
@@ -89,6 +109,10 @@ function pjson {
 
 function tar64 {
   tar cjf - "$1" | base64 | tr -d "\n"
+}
+
+function makemd {
+  touch "$1".md
 }
 
 # Terminal Browsing
@@ -117,13 +141,16 @@ function dump_specs {
 
 #Media Stuff
 function ytdl_ogg {
-  yt-dlp -x --audio-format vorbis "$1"
-  #youtube-dl -x --audio-format opus "$1"
-  #youtube-dl -x -f "bestaudio/best" "$1"
+  yt-dlp -x --audio-format opus --remux-video ogg "$1"
 }
 function cutsong {
+  # TODO: Backups
 	ffmpeg -i "$1" -ss "$2" -to "$3" -c copy ass.ogg
 	mv ass.ogg "$1"
+}
+
+function mkv2mp4 {
+	ffmpeg -i "$1" -codec copy "${1%.*}.mp4"
 }
 
 function update-cnf {

@@ -1,32 +1,32 @@
 #!/usr/bin/env bash
 
-export EDITOR=nano # For actually getting things done instead of launcing an operating system you can't quit on top of your exisiting one.
+export EDITOR=nano # For actually getting things done instead of launching an operating system you can't quit on top of your existing one.
 export LANG="en_CA.UTF-8" # Not a burgerfucker
 export LC_ALL="en_CA.UTF-8" # ^
 
+export TODO_FILE=~/.todo/list.txt # https://blog.nekohime.net/simple-todo-list-manager.html
+
 #Path Exports
-#export GO_PATH="/usr/local/go/bin" #Fuck Go
+export PYTHON_BIN="$HOME/.local/bin"
 export CARGO_PATH="$HOME/.cargo/bin"
-#export PYTHON_BIN="$HOME/.local/bin" #Fuck Python
-export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin" #Fuck Ruby
-                                     #But most importantly, Fuck You. With a Rusty nail.
+export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin"
+
+# We're not even putting  this in $PATH, yet this makes us able to use the nvm
+# command. What?
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Not gaining anything with the following...
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-#export PATH="$RUBY_BIN:$PYTHON_BIN:$PATH" #$PATH Always at the end
-export PATH="$CARGO_PATH:$PATH"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/nekohime/.local/share/flatpak/exports/share"
+export PATH="$PYTHON_BIN:$CARGO_PATH:$RUBY_BIN:$PATH"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
-#:$CARGO_PATH"
-#The following line should be put in /etc/profile
+
+# The following line should be put in /etc/profile
+# Will be removed at some point if found to be unnecessary in 2023+
 #export GTK_USE_PORTAL=1
-
-
-export TODO_FILE=~/.todo/list.txt # https://blog.nekohime.net/simple-todo-list-manager.html
 
 export LESS_TERMCAP_mb="$(printf '\e[1;31m')"
 export LESS_TERMCAP_md="$(printf '\e[1;31m')"
@@ -44,6 +44,4 @@ export LESS_TERMCAP_us="$(printf '\e[1;32m')"
 # Arch BTW
 export GPG_TTY=$(tty)
 
-export NCURSES_NO_UTF8_ACS=1
-export LESSHISTFILE=/dev/null #Stop polluting! #?
-
+export LESSHISTFILE=/dev/null # Make `less` stop polluting $HOME.

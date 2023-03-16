@@ -15,4 +15,3 @@ source "$DOTFILES/.aliases"
 #Functions
 source "$DOTFILES/.functions"
 
-source /etc/profile.d/emscripten.sh
