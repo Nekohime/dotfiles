@@ -13,6 +13,7 @@ alias locate="plocate -i"
 alias tmp='cd "$(mktemp -d)"'
 alias atom="pulsar"
 alias steam-flatpak="flatpak run com.valvesoftware.Steam"
+alias lsnumsort="ls -1v"
 
 # File I/O
 alias norg="gron --ungron"

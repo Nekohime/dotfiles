@@ -31,13 +31,23 @@ function x {
   fi
 }
 
-function zip_all_individually {
+function zip_all_individually_old { # Keeping this one for a while in case the newer version has bugs.
   if [ -z "$1" ];
   then
-    for i in *.rwx; do zip "$(basename "$i" .rwx).zip" "$i"; done
+    for i in *.rwx; do zip -9 "$(basename "$i" .rwx).zip" "$i"; done
   else
     for i in *."$1"; do zip "$(basename "$i" ."$1").zip" "$i"; done
   fi
+}
+
+function zip_all_individually {
+if [ -z "$1" ]; then
+    for i in *.rwx; do
+        zip "$(basename "$i" .rwx).zip" "$i"
+    done
+else
+    find . -name "*.$1" -exec sh -c 'zip -9 "$(basename "$1" ".$2").zip" "$1"' _ {} "$1" \;
+fi
 }
 
 # Image Manipulation
@@ -185,3 +195,5 @@ c() { printf "%s\n" "$@" | bc -l; } # c 13+17
 #ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done #?
 
 mping(){ ping $1|awk -F[=\ ] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -V0 -q -n synth 1 pl " f " vol 1 reverb -w ";print $0;system(c)}';}
+
+mock() { echo "$1" | sed -E 's/(\S)(\s*?)(\S)?/\U\1\2\L\3/g'; }
