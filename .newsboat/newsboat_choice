@@ -30,7 +30,7 @@ case $CHOICE in
           echo "Opening in w3m, going through readable"
           readable "$1" | w3m -T text/html
 	  # https://gitlab.com/gardenappl/readability-cli
-	  # sudo npm -g install readability-cli
+	  # npm -g install readability-cli
           ;;
         3)
           echo "Opening in Firefox"
