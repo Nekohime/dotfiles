@@ -4,21 +4,20 @@ alias py="python"
 
 # Everyday utils
 alias sl='ls' # Choochoo!
+alias lsa='ls -a'
 alias lsdot='ls -ad .?* --color=always'
 alias lsg='ls | grep -i $1'
-alias lsa='ls -a'
-#alias fd='fdfind'
-#alias df="df -x'squashfs'"
+alias lsnumsort="ls -1v"
 alias locate="plocate -i"
 alias tmp='cd "$(mktemp -d)"'
+alias gigrep='grep -r --exclude-dir='.git''
+
 alias atom="pulsar"
-alias steam-flatpak="flatpak run com.valvesoftware.Steam"
-alias lsnumsort="ls -1v"
 
 # File I/O
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
-alias todo='bash ~/git/scripts/utils/todo.sh'
+alias todo='bash ~/git/scripts/utils/todo'
 
 # Dev
 alias make13='make -j13'
@@ -34,6 +33,7 @@ alias wwlint="cd ~/git/WideWorlds && npm run lint"
 # Network Stuff
 alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
 alias wget='wget --hsts-file ~/.local/share/wget-hsts' # Don't fucking pollute my $HOME!
+alias wwget='curl -LO'
 
 # Terminal Browsing
 alias set_w3m='export BROWSER=w3m'
@@ -41,6 +41,10 @@ alias ddg='BROWSER=w3m ddgr'
 
 #Media Stuff
 
-alias vlc="smplayer"
+alias vlc="flatpak run org.videolan.VLC & disown"
 
 # Misc
+
+alias steam-flatpak="flatpak run com.valvesoftware.Steam"
+
+alias prefixrenameall='for file in *.jpg; do mv "$file" "aw-$file"; done' # Make it a function at some point with extension and prefix options

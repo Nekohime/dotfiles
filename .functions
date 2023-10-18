@@ -43,7 +43,7 @@ function zip_all_individually_old { # Keeping this one for a while in case the n
 function zip_all_individually {
 if [ -z "$1" ]; then
     for i in *.rwx; do
-        zip "$(basename "$i" .rwx).zip" "$i"
+        zip -9 "$(basename "$i" .rwx).zip" "$i"
     done
 else
     find . -name "*.$1" -exec sh -c 'zip -9 "$(basename "$1" ".$2").zip" "$1"' _ {} "$1" \;
@@ -124,6 +124,9 @@ function tar64 {
 function makemd {
   touch "$1".md
 }
+function mkmakefile {
+  cmake .. -G"Unix Makefiles"
+}
 
 # Terminal Browsing
 
@@ -163,6 +166,12 @@ function mkv2mp4 {
 	ffmpeg -i "$1" -codec copy "${1%.*}.mp4"
 }
 
+function mid2ogg {
+	timidity --output-mode=v --output-file="${1%.*}.ogg" "$1"
+}
+
+# System Management
+
 function update-cnf {
 	sudo pkgfile -u
 }
@@ -197,3 +206,20 @@ c() { printf "%s\n" "$@" | bc -l; } # c 13+17
 mping(){ ping $1|awk -F[=\ ] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -V0 -q -n synth 1 pl " f " vol 1 reverb -w ";print $0;system(c)}';}
 
 mock() { echo "$1" | sed -E 's/(\S)(\s*?)(\S)?/\U\1\2\L\3/g'; }
+
+owmake() {
+	cd ~/git/uniserver/
+	mkdir build/ && cd build
+	cmake .. -G"Unix Makefiles"
+	make -j13
+}
+
+owclean() {
+	cd ~/git/uniserver/
+	rm -r build/
+}
+
+owremake() {
+	owclean
+	owmake
+}
