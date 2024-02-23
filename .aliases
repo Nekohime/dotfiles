@@ -6,7 +6,7 @@ alias py="python"
 alias sl='ls' # Choochoo!
 alias lsa='ls -a'
 alias lsdot='ls -ad .?* --color=always'
-alias lsg='ls | grep -i $1'
+alias lsg='ls | grep -i'
 alias lsnumsort="ls -1v"
 alias locate="plocate -i"
 alias tmp='cd "$(mktemp -d)"'
@@ -45,6 +45,7 @@ alias ddg='BROWSER=w3m ddgr'
 
 alias steam-flatpak="flatpak run com.valvesoftware.Steam"
 
+# shellcheck disable=SC2154
 alias prefixrenameall='for file in *.jpg; do mv "$file" "aw-$file"; done' # Make it a function at some point with extension and prefix options
 
 alias newsboat='HOME=~/.neko/ newsboat'

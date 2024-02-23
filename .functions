@@ -203,19 +203,20 @@ c() { printf "%s\n" "$@" | bc -l; } # c 13+17
 
 #ls -v | cat -n | while read n f; do mv -n "$f" "$n.ext"; done #?
 
-mping(){ ping $1|awk -F[=\ ] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -V0 -q -n synth 1 pl " f " vol 1 reverb -w ";print $0;system(c)}';}
+mping(){ ping "$1"|awk -F[=\ ] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -V0 -q -n synth 1 pl " f " vol 1 reverb -w ";print $0;system(c)}';}
+
 
 mock() { echo "$1" | sed -E 's/(\S)(\s*?)(\S)?/\U\1\2\L\3/g'; }
 
 owmake() {
-	cd ~/git/uniserver/
-	mkdir build/ && cd build
+	cd ~/git/uniserver/ || exit
+	mkdir build/ && cd build || exit
 	cmake .. -G"Unix Makefiles"
 	make -j13
 }
 
 owclean() {
-	cd ~/git/uniserver/
+	cd ~/git/uniserver/ || exit
 	rm -r build/
 }
 
