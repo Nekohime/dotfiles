@@ -223,3 +223,13 @@ owremake() {
 	owclean
 	owmake
 }
+
+gitfuckoff() {
+	git fetch origin
+	git reset --hard origin/main
+}
+
+vlc() {
+    flatpak run org.videolan.VLC "$@" >/dev/null 2>&1 &
+	disown
+}

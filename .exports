@@ -10,6 +10,7 @@ export TODO_FILE=~/.todo/list.txt # https://blog.nekohime.net/simple-todo-list-m
 export PYTHON_BIN="$HOME/.local/bin"
 export CARGO_PATH="$HOME/.cargo/bin"
 export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk/" # 11 required for OSRS, let's hope it won\'t break anything else ;-)
 
 # We're not even putting  this in $PATH, yet this makes us able to use the nvm
 # command. What?

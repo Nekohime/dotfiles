@@ -11,6 +11,7 @@ alias lsnumsort="ls -1v"
 alias locate="plocate -i"
 alias tmp='cd "$(mktemp -d)"'
 alias gigrep='grep -r --exclude-dir='.git''
+alias copy='xclip -sel clip'
 
 alias atom="pulsar"
 
@@ -21,6 +22,7 @@ alias todo='bash ~/git/scripts/utils/todo'
 
 # Dev
 alias make13='make -j13'
+alias seemake='cmake .. -G"Unix Makefiles"'
 alias gitlog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 #alias luarocks="luarocks --lua-version 5.1" #doesn't work when in here?
 #alias disas="objdump -drwCS -Mintel"
@@ -38,10 +40,6 @@ alias wwget='curl -LO'
 # Terminal Browsing
 alias set_w3m='export BROWSER=w3m'
 alias ddg='BROWSER=w3m ddgr'
-
-#Media Stuff
-
-alias vlc="flatpak run org.videolan.VLC & disown"
 
 # Misc
 
