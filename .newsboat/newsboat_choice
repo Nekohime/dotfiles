@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+HOME=/home/$USER/
 HEIGHT=12
 WIDTH=64
 CHOICE_HEIGHT=4
@@ -34,6 +34,6 @@ case $CHOICE in
           ;;
         3)
           echo "Opening in Firefox"
-          firefox "$1" &
+          firefox -P Main "$1" &
           ;;
 esac

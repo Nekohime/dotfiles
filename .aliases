@@ -46,3 +46,5 @@ alias ddg='BROWSER=w3m ddgr'
 alias steam-flatpak="flatpak run com.valvesoftware.Steam"
 
 alias prefixrenameall='for file in *.jpg; do mv "$file" "aw-$file"; done' # Make it a function at some point with extension and prefix options
+
+alias newsboat='HOME=~/.neko/ newsboat'
