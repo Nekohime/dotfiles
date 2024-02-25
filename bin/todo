@@ -15,7 +15,7 @@ mkdir -p "${TODO_FILE%/*}/"
 touch "$TODO_FILE"
 
 displayFile() {
-	if [ "$(stat -c %s $TODO_FILE)" -gt 0 ]; then
+	if [ "$(stat -c %s "$TODO_FILE")" -gt 0 ]; then
 		echo "$TODO_FILE"
 	fi
 }
@@ -41,12 +41,18 @@ if [ "$#" -eq 0 ]; then
 fi
 
 VALID_ARGS=$(getopt -o fhla:r:e:g:s: --long file,help,list,add:,remove:,edit:,get:,search: -- "$@")
-if [[ $? -ne 0 ]]; then
+getopt_exit_code=$?
+
+if ! [ $getopt_exit_code -eq 0 ]; then
     usage
 fi
 
+#if ! [[ $? -eq 0 ]]; then
+#    usage
+#fi
+
 eval set -- "$VALID_ARGS"
-while [ : ]; do
+while true; do
   case "$1" in
     -f | --file)
         displayFile
@@ -57,12 +63,12 @@ while [ : ]; do
         shift
         ;;
     -l | --list)
-        #displayFile #./todo will display the file in use, but not --list
+        # displayFile # ./todo will display the file in use, but not --list
         grep -rn '' "$TODO_FILE" --color=always
         shift
         ;;
     -a | --add)
-        echo "$2" | sed 's/[^ ]* //' >> "$TODO_FILE"
+        echo "${2#* }" >> "$TODO_FILE"
         shift 2
         ;;
     -r | --remove)
@@ -72,47 +78,21 @@ while [ : ]; do
         shift 2
         ;;
     -e | --edit)
-	      sed -i "$2s/.*/$4/" "$TODO_FILE"
+        sed -i "$2s/.*/$4/" "$TODO_FILE"
         shift 2
         ;;
     -g | --get)
-	      sed -n "$2,$2 p" "$TODO_FILE"
+        sed -n "$2,$2 p" "$TODO_FILE"
         shift 2
         ;;
     -s | --search)
-        #displayFile
+        # displayFile
         grep -rni "$2" "$TODO_FILE" --color=always
         shift 2
         ;;
     --)
-        shift;
+        shift
         break
         ;;
   esac
 done
-
-#while getopts "fhla:r:e:g:s:" opt; do
-#  case "${opt}" in
-#    l)
-#      displayFile
-#      grep -rn '' "$TODO_FILE" --color=always
-#      ;;
-#
-#    s)
-#      echo "e"
-#      ;;
-#    z)
-#      echo "Option -b was passed with argument: $OPTARG"
-#      ;;
-#
-#    x)
-#      echo "Option -c was passed."
-#      ;;
-#
-#    \?)
-#      usage
-#      exit 1
-#    ;;
-#
-#    esac
-#done

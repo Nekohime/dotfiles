@@ -153,9 +153,11 @@ function dump_specs {
 }
 
 #Media Stuff
+
 function ytdl_ogg {
   yt-dlp -x --audio-format opus --remux-video ogg "$1"
 }
+
 function cutsong {
   # TODO: Backups
 	ffmpeg -i "$1" -ss "$2" -to "$3" -c copy ass.ogg
