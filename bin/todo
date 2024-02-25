@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+# Released under public domain. Made by Nekohime (https://nekohime.net)
+# Undergoing a rewrite...
+
+# You should put some exports/alias(es) in your .bashrc, but this will handle defaults as well.
+#export TODO_FILE=~/.neko/TODO.txt
+
+if [ -z "$TODO_FILE" ]; then
+ #echo "TODO_FILE is Empty... using default"
+ TODO_FILE=~/.todo/list.txt
+fi
+
+mkdir -p "${TODO_FILE%/*}/"
+touch "$TODO_FILE"
+
+displayFile() {
+	if [ "$(stat -c %s $TODO_FILE)" -gt 0 ]; then
+		echo "$TODO_FILE"
+	fi
+}
+usage() {
+  echo "Usage: $0 [argument]"
+  echo "List: [$0 -l] - Lists all items"
+  echo "Add: [-a <string>] - Adds item"
+  echo "Delete: [-d <line>] - Deletes item"
+  echo "Edit: [-e <line> <string>] - Edits item with string"
+  echo "Search: [-s <string>] - Returns items containing string"
+  echo "Get: [-s <line>] - Returns item at line number"
+  echo "File: [-f] - Returns current TODO file in the \$TODO_FILE environment variable"
+  #TODO: Replace -f with ability to set which file gets written to, if provided?
+  echo "Help: [-h] - Shows command usage again"
+  #TODO: Add option for omitting line number in results
+  exit 1;
+}
+# list, file, search, add, delete, edit, backup, get, help/?
+
+if [ "$#" -eq 0 ]; then
+  displayFile
+  grep -rn '' "$TODO_FILE" --color=always
+fi
+
+VALID_ARGS=$(getopt -o fhla:r:e:g:s: --long file,help,list,add:,remove:,edit:,get:,search: -- "$@")
+if [[ $? -ne 0 ]]; then
+    usage
+fi
+
+eval set -- "$VALID_ARGS"
+while [ : ]; do
+  case "$1" in
+    -f | --file)
+        displayFile
+        shift
+        ;;
+    -h | --help)
+        usage
+        shift
+        ;;
+    -l | --list)
+        #displayFile #./todo will display the file in use, but not --list
+        grep -rn '' "$TODO_FILE" --color=always
+        shift
+        ;;
+    -a | --add)
+        echo "$2" | sed 's/[^ ]* //' >> "$TODO_FILE"
+        shift 2
+        ;;
+    -r | --remove)
+        if [ "$2" -gt 0 ]; then
+          sed -i "$2"d "$TODO_FILE"
+        fi
+        shift 2
+        ;;
+    -e | --edit)
+	      sed -i "$2s/.*/$4/" "$TODO_FILE"
+        shift 2
+        ;;
+    -g | --get)
+	      sed -n "$2,$2 p" "$TODO_FILE"
+        shift 2
+        ;;
+    -s | --search)
+        #displayFile
+        grep -rni "$2" "$TODO_FILE" --color=always
+        shift 2
+        ;;
+    --)
+        shift;
+        break
+        ;;
+  esac
+done
+
+#while getopts "fhla:r:e:g:s:" opt; do
+#  case "${opt}" in
+#    l)
+#      displayFile
+#      grep -rn '' "$TODO_FILE" --color=always
+#      ;;
+#
+#    s)
+#      echo "e"
+#      ;;
+#    z)
+#      echo "Option -b was passed with argument: $OPTARG"
+#      ;;
+#
+#    x)
+#      echo "Option -c was passed."
+#      ;;
+#
+#    \?)
+#      usage
+#      exit 1
+#    ;;
+#
+#    esac
+#done

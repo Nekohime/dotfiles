@@ -18,7 +18,6 @@ alias atom="pulsar"
 # File I/O
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
-alias todo='bash ~/git/scripts/utils/todo'
 
 # Dev
 alias make13='make -j13'
