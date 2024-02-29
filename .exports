@@ -12,6 +12,7 @@ export PYTHON_BIN="$HOME/.local/bin"
 export CARGO_PATH="$HOME/.cargo/bin"
 export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk/" # 11 required for OSRS, let's hope it won\'t break anything else ;-)
+export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
 export NEKO_HOME="$HOME/.neko/bin"
 
 # We're not even putting  this in $PATH, yet this makes us able to use the nvm
@@ -21,7 +22,7 @@ export NVM_DIR="$HOME/.config/nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="$PYTHON_BIN:$CARGO_PATH:$RUBY_BIN:$NEKO_HOME:$PATH"
+export PATH="$PYTHON_BIN:$CARGO_PATH:$RUBY_BIN:$NEKO_HOME:$BREW_HOME:$PATH"
 export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
