@@ -11,7 +11,8 @@ alias lsnumsort="ls -1v"
 alias locate="plocate -i"
 alias tmp='cd "$(mktemp -d)"'
 alias gigrep='grep -r --exclude-dir='.git''
-alias copy='xclip -sel clip'
+alias copy='wl-copy'
+alias paste='wl-paste'
 
 alias atom="pulsar"
 
