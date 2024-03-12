@@ -27,6 +27,7 @@ alias copy='wl-copy'
 alias paste='wl-paste'
 
 alias atom="pulsar"
+alias nano="nano -f $HOME/.neko/configs/.nanorc"
 
 # File I/O
 alias norg="gron --ungron"
