@@ -232,7 +232,7 @@ gitfuckoff() {
 	git reset --hard origin/main
 }
 
-vlc() {
-    flatpak run org.videolan.VLC "$@" >/dev/null 2>&1 &
+fvlc() {
+	flatpak run org.videolan.VLC "$@" >/dev/null 2>&1 &
 	disown
 }
