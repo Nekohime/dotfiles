@@ -6,6 +6,18 @@ case $- in
     *) return;;
 esac
 
+if [ ! -f /etc/debian_version ]; then
+  # Doesn't work on debian-based distros
+  # TODO: Investigate other distros?
+  export LANG="en_CA.UTF-8"
+  export LC_ALL="en_CA.UTF-8"
+
+  # Source command-not-found script for better error messages
+  # systemctl enable pkgfile-update.timer
+  # pkgfile -u
+  source "/usr/share/doc/pkgfile/command-not-found.bash"
+fi
+
 # Ignore duplicate and leading-space lines in history
 HISTCONTROL=ignoreboth
 
@@ -74,7 +86,7 @@ alert() {
 }
 
 # Source user-specific alias configurations if they exist
-if [ -f ~/.bash_aliases ]; then
+if [ -f "$HOME/.bash_aliases" ]; then
     source "$HOME/.bash_aliases"
 fi
 
@@ -87,19 +99,17 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Source command-not-found script for better error messages
-source "/usr/share/doc/pkgfile/command-not-found.bash"
 
 # Source custom configs https://github.com/Nekohime/dotfiles
 export DOTFILES="$HOME/.neko/"
 
-#Exports
+# Exports
 source "$DOTFILES/.exports"
 
 source "$DOTFILES/.colours"
 
-#Aliases
+# Aliases
 source "$DOTFILES/.aliases"
 
-#Functions
+# Functions
 source "$DOTFILES/.functions"

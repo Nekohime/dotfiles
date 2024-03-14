@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-export EDITOR=nano # For actually getting things done instead of launching an operating system you can't quit on top of your existing one.
-export LANG="en_CA.UTF-8" # Not a burgerfucker
-export LC_ALL="en_CA.UTF-8" # ^
+export EDITOR="nano"
 
 # https://nekohime.net/simple-todo-list-manager.html
 export TODO_FILE=~/.neko/TODO.txt
