@@ -6,6 +6,8 @@
 # You should put some exports/alias(es) in your .bashrc, but this will handle defaults as well.
 #export TODO_FILE=~/.neko/TODO.txt
 
+PROGRAM_NAME=$(basename "$0")
+
 if [ -z "$TODO_FILE" ]; then
 	#echo "TODO_FILE is non-existent... using default"
 	TODO_FILE=~/.todo/list.txt
@@ -36,20 +38,32 @@ displayMD() {
 	bat -l md "$TODO_FILE"
 }
 
+
 usage() {
-	echo "Usage: $0 [argument]"
-	echo "List: [$0 -l] - Lists all items"
-	echo "List (Markdown): [$0 -m] - Lists all items via bat with Markdown parsing"
-	echo "Add: [-a <string>] - Adds item"
-	echo "Delete: [-d <line>] - Deletes item"
-	echo "Edit: [-e <line> <string>] - Edits item with string"
-	echo "Search: [-s <string>] - Returns items containing string"
-	echo "Get: [-s <line>] - Returns item at line number"
-	echo "File: [-f] - Returns current TODO file in the \$TODO_FILE environment variable"
-	echo "Help: [-h] - Shows command usage again"
-	#TODO: Add option for omitting line number in results
-	exit 1;
+    echo "Usage: $PROGRAM_NAME [options]"
+    echo
+    echo "Options:"
+    echo "  -f, --file             Display the current TODO file path"
+    echo "  -h, --help             Display this help message"
+    echo "  -l, --list             List all items in the TODO file"
+    echo "  -m, --md               Display TODO file with Markdown formatting"
+    echo "  -a, --add <string>     Add an item to the TODO list"
+    echo "  -r, --remove <line>    Remove an item from the TODO list by line number"
+    echo "  -e, --edit [line]      Open the TODO file in the user's preferred editor on [line], if provided."
+    echo "  -g, --get <line>       Get an item from the TODO list by line number"
+    echo "  -s, --search <string>  Search for items in the TODO list containing a given string"
+    echo
+    echo "Examples:"
+		echo "  $PROGRAM_NAME -l                    # List all items in the TODO list"
+    echo "  $PROGRAM_NAME -a \"Buy groceries\"    # Add \"Buy groceries\" to the TODO list"
+    echo "  $PROGRAM_NAME -r 3                  # Remove the item at line 3 from the TODO list"
+    echo "  $PROGRAM_NAME -e                    # Edit the TODO list using the default CLI editor"
+    echo "  $PROGRAM_NAME -g 1                  # Get the item at line 1 from the TODO list"
+    echo "  $PROGRAM_NAME -s \"important\"        # Search for items containing \"important\" in the TODO list"
+    echo
+    exit 1
 }
+
 # list, file, search, add, delete, edit, backup, get, help/?
 
 if [ "$#" -eq 0 ]; then
@@ -88,7 +102,7 @@ while true; do
 				shift
 				;;
 		-a | --add)
-				echo "${2#* }" >> "$TODO_FILE"
+				echo "$2" >> "$TODO_FILE"
 				shift 2
 				;;
 		-r | --remove)

@@ -6,5 +6,5 @@
 npm -g install readability-cli
 
 # Assuming Arch, may look into cross-distro solution later.
-sudo pacman -S newsboat dialog
+sudo pacman -S newsboat dialog tree jpegoptim oxipng
 
