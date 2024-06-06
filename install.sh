@@ -5,6 +5,7 @@
 
 TMP_START=$(pwd)
 cd $HOME/
+rm $HOME/.bashrc
 ln -s $HOME/.neko/.bashrc .
 cd "$TMP_START"
 sudo cp .newsboat/newsboat_choice /usr/local/bin/

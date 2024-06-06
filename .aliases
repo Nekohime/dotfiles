@@ -44,6 +44,7 @@ alias wwserver="cd ~/git/WideWorlds/ && npm run server"
 alias wwclient="cd ~/git/WideWorlds/ && VITE_SERVER_URL=http://localhost:8080 npm run client-dev"
 alias wwdb="cd ~/git/WideWorlds && sqlitebrowser wideworlds.sqlite3"
 alias wwlint="cd ~/git/WideWorlds && npm run lint"
+alias ww-desktop="cd /media/75e4e762-42d0-4eaa-86a0-2300f63d4575/WideWorlds/wideworlds-desktop/out/wideworlds-desktop-linux-x64/ && ./wideworlds-desktop"
 
 # Network Stuff
 alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
