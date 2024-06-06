@@ -4,7 +4,7 @@
 set tabsize 2
 
 ## Display line numbers to the left (and any anchors in the margin).
-set linenumbers
+# set linenumbers
 
 ## Automatically indent a newly created line to the same number of
 ## tabs and/or spaces as the preceding line -- or as the next line
@@ -13,7 +13,7 @@ set autoindent
 
 ## Draw a vertical stripe at the given column, to help judge text width.
 ## (This option does not have a default value.)
-set guidestripe 80
+# set guidestripe 80
 
 ## Remember the used search/replace strings for the next session.
 set historylog
