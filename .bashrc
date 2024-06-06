@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# Check if running interactively, if not, exit
-case $- in
-    *i*) ;;
-    *) return;;
-esac
+# Don't do anything if running interactively
+[[ "$-" != *i* ]] && return
 
 if [ ! -f /etc/debian_version ]; then
   # Doesn't work on debian-based distros
@@ -21,12 +18,12 @@ fi
 # Ignore duplicate and leading-space lines in history
 HISTCONTROL=ignoreboth
 
-# Append to the history file instead of overwriting it
-shopt -s histappend
-
 # Set maximum size for command history
 HISTSIZE=1024
 HISTFILESIZE=2048
+
+# Append to the history file instead of overwriting it
+shopt -s histappend
 
 # Update LINES and COLUMNS after each command if necessary
 shopt -s checkwinsize
@@ -102,6 +99,8 @@ fi
 
 # Source custom configs https://github.com/Nekohime/dotfiles
 export DOTFILES="$HOME/.neko/"
+
+cat "$DOTFILES/.motd" 2>/dev/null
 
 # Exports
 source "$DOTFILES/.exports"
