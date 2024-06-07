@@ -6,13 +6,13 @@
 if [ ! -f /etc/debian_version ]; then
   # Doesn't work on debian-based distros
   # TODO: Investigate other distros?
-  export LANG="en_CA.UTF-8"
-  export LC_ALL="en_CA.UTF-8"
+  export LANG='en_CA.UTF-8'
+  export LC_ALL='en_CA.UTF-8'
 
   # Source command-not-found script for better error messages
   # systemctl enable pkgfile-update.timer
   # pkgfile -u
-  source "/usr/share/doc/pkgfile/command-not-found.bash"
+  source '/usr/share/doc/pkgfile/command-not-found.bash'
 fi
 
 # Ignore duplicate and leading-space lines in history
@@ -71,11 +71,11 @@ alert() {
             -e 's/[;&|]\s*alert$//')"
 
     # Set the default icon to 'terminal'
-    local icon="terminal"
+    local icon='terminal'
 
     # Check if the exit code is non-zero (indicating an error) and change the icon accordingly
     if [ $exit_code -ne 0 ]; then
-        icon="error"
+        icon='error'
     fi
 
     # Display a desktop notification with the specified urgency, icon, and message

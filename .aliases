@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-alias py="python"
+alias py='python'
 
 # Everyday utils
 
@@ -19,32 +19,34 @@ alias sl='ls' # Choochoo!
 alias lsa='ls -a'
 alias lsdot='ls -ad .?* --color=always'
 alias lsg='ls | grep -i'
-alias lsnumsort="ls -1v"
-alias locate="plocate -i"
+alias lsnumsort='ls -1v'
+alias psf='ps -Af | grep'
+alias hist='history | grep'
+alias locate='plocate -i'
 alias tmp='cd "$(mktemp -d)"'
 alias gigrep='grep -r --exclude-dir='.git''
+
 alias copy='wl-copy'
 alias paste='wl-paste'
 
-alias atom="pulsar"
+alias atom='pulsar'
 alias nano="nano -f $HOME/.neko/configs/.nanorc"
 
 # File I/O
-alias norg="gron --ungron"
-alias ungron="gron --ungron"
+alias norg='gron --ungron'
+alias ungron='gron --ungron'
 
 # Dev
 alias make13='make -j13'
 alias seemake='cmake .. -G"Unix Makefiles"'
 alias gitlog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-#alias luarocks="luarocks --lua-version 5.1" #doesn't work when in here?
 #alias disas="objdump -drwCS -Mintel"
 #alias disas2="objdump -drwCS -Matt"
-alias wwserver="cd ~/git/WideWorlds/ && npm run server"
-alias wwclient="cd ~/git/WideWorlds/ && VITE_SERVER_URL=http://localhost:8080 npm run client-dev"
-alias wwdb="cd ~/git/WideWorlds && sqlitebrowser wideworlds.sqlite3"
-alias wwlint="cd ~/git/WideWorlds && npm run lint"
-alias ww-desktop="cd /media/75e4e762-42d0-4eaa-86a0-2300f63d4575/WideWorlds/wideworlds-desktop/out/wideworlds-desktop-linux-x64/ && ./wideworlds-desktop"
+alias wwserver='cd ~/git/WideWorlds/ && npm run server'
+alias wwclient='cd ~/git/WideWorlds/ && VITE_SERVER_URL=http://localhost:8080 npm run client-dev'
+alias wwdb='cd ~/git/WideWorlds && sqlitebrowser wideworlds.sqlite3'
+alias wwlint='cd ~/git/WideWorlds && npm run lint'
+alias ww-desktop='cd /media/75e4e762-42d0-4eaa-86a0-2300f63d4575/WideWorlds/wideworlds-desktop/out/wideworlds-desktop-linux-x64/ && ./wideworlds-desktop'
 
 # Network Stuff
 alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
@@ -57,7 +59,7 @@ alias ddg='BROWSER=w3m ddgr'
 
 # Misc
 
-alias steam-flatpak="flatpak run com.valvesoftware.Steam"
+alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 
 # shellcheck disable=SC2154
 alias prefixrenameall='for file in *.jpg; do mv "$file" "aw-$file"; done' # Make it a function at some point with extension and prefix options

@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-export EDITOR="nano"
+export EDITOR='nano'
 
 # https://nekohime.net/simple-todo-list-manager.html
 export TODO_FILE=~/.neko/TODO.txt
 
 #Path Exports
-export FLATPAK_SHARE="/var/lib/flatpak/exports/share"
+export FLATPAK_SHARE='/var/lib/flatpak/exports/share'
 export FLATPAK_LOCALSHARE="$HOME/.local/share/flatpak/exports/share"
 
 export PYTHON_BIN="$HOME/.local/bin"
 export CARGO_PATH="$HOME/.cargo/bin"
 export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin"
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk/" # 11 required for OSRS, let's hope it won\'t break anything else ;-)
-export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk/' # 11 required for OSRS, let's hope it won\'t break anything else ;-)
+export BREW_HOME='/home/linuxbrew/.linuxbrew/bin'
 export NEKO_HOME="$HOME/.neko/bin"
 
 # We're not even putting  this in $PATH, yet this makes us able to use the nvm
