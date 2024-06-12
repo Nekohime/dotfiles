@@ -41,14 +41,29 @@ function zip_all_individually_old { # Keeping this one for a while in case the n
 }
 
 function zip_all_individually {
-if [ -z "$1" ]; then
-    for i in *.rwx; do
-        zip -9 "$(basename "$i" .rwx).zip" "$i"
-    done
-else
-    find . -name "*.$1" -exec sh -c 'zip -9 "$(basename "$1" ".$2").zip" "$1"' _ {} "$1" \;
-fi
+  if [ -z "$1" ]; then
+      for i in *.rwx; do
+          zip -9 "$(basename "$i" .rwx).zip" "$i"
+      done
+  else
+      find . -name "*.$1" -exec sh -c 'zip -9 "$(basename "$1" ".$2").zip" "$1"' _ {} "$1" \;
+  fi
 }
+
+prefixrenameall() {
+  local extension=$1
+  local prefix=$2
+
+  if [ -z "$extension" ] || [ -z "$prefix" ]; then
+    echo "Usage: prefixrenameall <extension> <prefix>"
+    return 1
+  fi
+
+  for file in *."$extension"; do
+    mv "$file" "$prefix-$file"
+  done
+}
+
 
 # Image Manipulation
 

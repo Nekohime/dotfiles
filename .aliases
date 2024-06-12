@@ -24,13 +24,13 @@ alias psf='ps -Af | grep'
 alias hist='history | grep'
 alias locate='plocate -i'
 alias tmp='cd "$(mktemp -d)"'
-alias gigrep='grep -r --exclude-dir='.git''
 
 alias copy='wl-copy'
 alias paste='wl-paste'
 
 alias atom='pulsar'
 alias nano="nano -f $HOME/.neko/configs/.nanorc"
+alias calc='kcalc & disown'
 
 # File I/O
 alias norg='gron --ungron'
@@ -40,6 +40,7 @@ alias ungron='gron --ungron'
 alias make13='make -j13'
 alias seemake='cmake .. -G"Unix Makefiles"'
 alias gitlog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+alias gigrep='grep -r --exclude-dir='.git''
 #alias disas="objdump -drwCS -Mintel"
 #alias disas2="objdump -drwCS -Matt"
 alias wwserver='cd ~/git/WideWorlds/ && npm run server'
@@ -51,17 +52,21 @@ alias ww-desktop='cd /media/75e4e762-42d0-4eaa-86a0-2300f63d4575/WideWorlds/wide
 # Network Stuff
 alias myip='curl -s https://nekohime.net/tools/ip.php' # I end up googling my own IP anyway.
 alias wget='wget --hsts-file ~/.local/share/wget-hsts' # Don't fucking pollute my $HOME!
-alias wwget='curl -LO'
 
 # Terminal Browsing
 alias set_w3m='export BROWSER=w3m'
 alias ddg='BROWSER=w3m ddgr'
 
+# Flatpak
+alias pixelorama='com.orama_interactive.Pixelorama & disown'
+alias blender='flatpak run org.blender.Blender & disown'
+alias thunderbird='flatpak run org.mozilla.Thunderbird & disown'
+alias spotify='flatpak run com.spotify.Client & disown'
+alias krita='flatpak run org.kde.krita & disown'
+
 # Misc
 
-alias steam-flatpak='flatpak run com.valvesoftware.Steam'
-
 # shellcheck disable=SC2154
-alias prefixrenameall='for file in *.jpg; do mv "$file" "aw-$file"; done' # Make it a function at some point with extension and prefix options
+#alias prefixrenameall='for file in *.jpg; do mv "$file" "aw-$file"; done' # Make it a function at some point with extension and prefix options
 
 alias newsboat='HOME=~/.neko/ newsboat'
