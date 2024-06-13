@@ -2,27 +2,24 @@
 
 # Archives & Compression
 function x {
-#TODO: Make use of atool.
   if [ -z "$1" ]; then
-    echo "Usage: x <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "Usage: x <path/file_name>.<zip|rar|bz2|gz|tar|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else
     if [ -f "$1" ]; then
       case "$1" in
-        *.tar.bz2)   tar xvjf "$1"    ;;
-        *.tar.gz)    tar xvzf "$1"    ;;
-        *.tar.xz)    tar xvJf "$1"    ;;
-        *.lzma)      unlzma "$1"      ;;
-        *.bz2)       bunzip2 "$1"     ;;
+        *.tar.bz2)   tar xvf "$1"    ;;
+        *.tar.gz)    tar xvf "$1"    ;;
+        *.tar.xz)    tar xvf "$1"    ;;
+        *.lzma)      unar "$1"      ;;
         *.rar)       unrar x -ad "$1" ;;
         *.gz)        gunzip "$1"      ;;
         *.tar)       tar xvf "$1"     ;;
-        *.tbz2)      tar xvjf "$1"    ;;
-        *.tgz)       tar xvzf "$1"    ;;
+        *.tgz)       tar xvf "$1"    ;;
         *.zip)       unzip "$1"       ;;
-        *.Z)         uncompress "$1"  ;;
+        *.Z)         tar xvf "$1"  ;;
         *.7z)        7z x "$1"        ;;
-        *.xz)        unxz "$1"        ;;
-        *.exe)       cabextract "$1"  ;;
+        *.xz)        unar "$1"        ;;
+        *.exe)       unar "$1"  ;;
         *)           echo "extract: '$1' - unknown archive method" ;;
       esac
     else
@@ -250,4 +247,9 @@ gitfuckoff() {
 fvlc() {
 	flatpak run org.videolan.VLC "$@" >/dev/null 2>&1 &
 	disown
+}
+
+loadnvm() {
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }

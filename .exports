@@ -28,20 +28,7 @@ export JAVA_HOME='/usr/lib/jvm/java-11-openjdk/' # 11 required for OSRS, let's h
 export BREW_HOME='/home/linuxbrew/.linuxbrew/bin'
 export NEKO_HOME="$HOME/.neko/bin"
 
-
-# We're not even putting  this in $PATH, yet this makes us able to use the nvm
-# command. What?
 export NVM_DIR="$HOME/.config/nvm"
-
-
-# Source nvm script if it exists
-if [ -n "$NVM_DIR" ] && [ -s "$NVM_DIR/nvm.sh" ]; then
-    source "$NVM_DIR/nvm.sh"
-fi
-
-if [ -n "$NVM_DIR" ] && [ -s "$NVM_DIR/bash_completion" ]; then
-    source "$NVM_DIR/bash_completion"
-fi
 
 export PATH="$PYTHON_BIN:$CARGO_PATH:$RUBY_BIN:$NEKO_HOME:$BREW_HOME:$FLATPAK_SHARE:$PATH"
 
