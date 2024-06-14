@@ -23,14 +23,11 @@ export FLATPAK_LOCALSHARE="$HOME/.local/share/flatpak/exports/share"
 export PYTHON_BIN="$XDG_DATA_HOME/pythonbin"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_PATH="$CARGO_HOME/bin"
-export RUBY_BIN="$HOME/.local/share/gem/ruby/3.0.0/bin"
-export JAVA_HOME='/usr/lib/jvm/java-11-openjdk/' # 11 required for OSRS, let's hope it won\'t break anything else ;-)
-export BREW_HOME='/home/linuxbrew/.linuxbrew/bin'
 export NEKO_HOME="$HOME/.neko/bin"
 
 export NVM_DIR="$HOME/.config/nvm"
 
-export PATH="$PYTHON_BIN:$CARGO_PATH:$RUBY_BIN:$NEKO_HOME:$BREW_HOME:$FLATPAK_SHARE:$PATH"
+export PATH="$PYTHON_BIN:$CARGO_PATH:$NEKO_HOME:$FLATPAK_SHARE:$PATH"
 
 # The following line should be put in /etc/profile
 # Will be removed at some point if found to be unnecessary in 2023+
